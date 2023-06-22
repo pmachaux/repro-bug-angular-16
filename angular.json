@@ -17,14 +17,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/repo-bug-app",
+            "outputPath": "dist/repo-bug-app/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "themes/main.scss"],
+            "styles": [
+              "src/styles.scss",
+              "themes/main.scss",
+              "themes/common-styles.scss",
+              "themes/theme.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -47,7 +52,7 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": true,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
@@ -84,6 +89,61 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/repo-bug-app/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "buildOptimizer": true,
+              "outputHashing": "media",
+              "optimization": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": true,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "repo-bug-app:build:development",
+              "serverTarget": "repo-bug-app:server:development"
+            },
+            "production": {
+              "browserTarget": "repo-bug-app:build:production",
+              "serverTarget": "repo-bug-app:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "repo-bug-app:build:production",
+              "serverTarget": "repo-bug-app:server:production"
+            },
+            "development": {
+              "browserTarget": "repo-bug-app:build:development",
+              "serverTarget": "repo-bug-app:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

@@ -1,5 +1,28 @@
 /* Theme colors */
 
-.test-class {
-  color: red !important;
-}
+$primary-color: #4ab623;
+$error-color: #eb5757;
+$error-color-light: #fddede;
+$warning-color: #ffc107;
+$warning-color-dark: #c79100;
+$secondary-color: #8acc6f;
+$light-color: #bee2af;
+$contrast-color: #41454a;
+$contrast-light-color: #51555c;
+$contrast-dark-color: #231f20;
+$accent-color: #ffff;
+$main-background-color: #ffff;
+$alt-background-color: #f4f3fa;
+$text-color: #000;
+
+/* Responsive breakpoints */
+
+$mobile-breakpoint: 640px;
+$small-desktop-breakpoint: 1280px;
+$xs-mobile-breakpoint: 568px;
+$large-tablet-breakpoint: 1024px;
+$standard-tablet-breakpoint: 820px;
+$wide-screen-breakpoint: 1800px;
+
+$max-content-width: 2000px;
+$half-content-width: calc($max-content-width / 2);

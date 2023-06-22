@@ -1,0 +1,126 @@
+@use "@angular/material" as mat;
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat.core();
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$origin8-green: (
+  50: #e9f6e5,
+  100: #c9e9bd,
+  200: #a5db92,
+  300: #80cc66,
+  400: #65c145,
+  500: #4ab624,
+  600: #43af20,
+  700: #3aa61b,
+  800: #329e16,
+  900: #228e0d,
+  A100: #c7ffbe,
+  A200: #9aff8b,
+  A400: #6eff58,
+  A700: #58ff3f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+
+$origin8-white: (
+  50: #ffff,
+  100: #ffff,
+  200: #ffff,
+  300: #ffff,
+  400: #ffff,
+  500: #ffff,
+  600: #ffff,
+  700: #ffff,
+  800: #ffff,
+  900: #ffff,
+  A100: #ffff,
+  A200: #ffff,
+  A400: #ffff,
+  A700: #ffff,
+  contrast: (
+    50: #e9f6e5,
+    100: #c9e9bd,
+    200: #a5db92,
+    300: #80cc66,
+    400: #65c145,
+    500: #4ab624,
+    600: #43af20,
+    700: #3aa61b,
+    800: #329e16,
+    900: #228e0d,
+    A100: #c7ffbe,
+    A200: #9aff8b,
+    A400: #6eff58,
+    A700: #58ff3f,
+  ),
+);
+
+$origin8-danger: (
+  50: #c62828,
+  100: #c62828,
+  200: #c62828,
+  300: #c62828,
+  400: #c62828,
+  500: #c62828,
+  600: #c62828,
+  700: #c62828,
+  800: #c62828,
+  900: #c62828,
+  A100: #c62828,
+  A200: #c62828,
+  A400: #c62828,
+  A700: #c62828,
+  contrast: (
+    50: #ffff,
+    100: #ffff,
+    200: #ffff,
+    300: #ffff,
+    400: #ffff,
+    500: #ffff,
+    600: #ffff,
+    700: #ffff,
+    800: #ffff,
+    900: #ffff,
+    A100: #ffff,
+    A200: #ffff,
+    A400: #ffff,
+    A700: #ffff,
+  ),
+);
+
+// mandatory stuff for theming
+$origin8-palette-primary: mat.define-palette($origin8-green);
+$origin8-palette-accent: mat.define-palette($origin8-white);
+// The warn palette is optional (defaults to red).
+$origin8-warn: mat.define-palette($origin8-danger);
+// include the custom theme components into a theme object
+$origin8-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $origin8-palette-primary,
+      accent: $origin8-palette-accent,
+      warn: $origin8-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+// include the custom theme object into the angular material theme
+@include mat.core-theme($origin8-theme);
+@include mat.all-component-themes($origin8-theme);
